@@ -7,7 +7,7 @@
 
 	export let data: PageData;
 
-	const { form, errors, constraints, enhance } = superForm(data.form, {
+	const { form, errors, constraints, enhance, submitting } = superForm(data.form, {
 		validators: zodClient(signUpSchema)
 	});
 </script>
@@ -65,7 +65,7 @@
 	/>
 	{#if $errors.password}<span class="input-err">{$errors.password}</span>{/if}
 
-	<button type="submit">Daftar</button>
+	<button type="submit" disabled={$submitting}>Daftar</button>
 </form>
 
 <p>Sudah punya akun? <a href="/signin">login</a>.</p>
