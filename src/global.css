@@ -16,3 +16,10 @@
     display: block;
     margin-bottom: 6px;
 }
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}

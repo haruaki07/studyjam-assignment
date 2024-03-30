@@ -32,6 +32,4 @@
 	<title>StudyJam Assignment</title>
 </svelte:head>
 
-<h1>StudyJam Assignment</h1>
-
 <slot />

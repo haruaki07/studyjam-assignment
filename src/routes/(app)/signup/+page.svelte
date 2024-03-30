@@ -59,6 +59,7 @@
 		type="password"
 		name="password"
 		id="password"
+		placeholder="••••••••"
 		bind:value={$form.password}
 		{...$constraints.password}
 	/>
