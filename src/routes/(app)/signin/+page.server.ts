@@ -1,16 +1,10 @@
 import { signInSchema } from "$lib/schemas/auth";
 import { AuthApiError } from "@supabase/supabase-js";
-import { fail, type Actions, redirect } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import { setFlash } from "sveltekit-flash-message/server";
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
-import type { PageServerLoad } from "./$types";
-
-export const load: PageServerLoad = async () => {
-    const form = await superValidate(zod(signInSchema));
-
-    return { form };
-};
+import type { Actions } from "./$types"
 
 export const actions: Actions = {
     default: async ({ request, locals: { supabase }, cookies }) => {

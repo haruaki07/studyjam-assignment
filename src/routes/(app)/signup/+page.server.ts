@@ -4,14 +4,7 @@ import { fail } from '@sveltejs/kit';
 import { redirect, setFlash } from 'sveltekit-flash-message/server';
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
-import type { Actions, PageServerLoad } from './$types.js';
-
-
-export const load: PageServerLoad = async () => {
-    const form = await superValidate(zod(signUpSchema));
-
-    return { form };
-};
+import type { Actions } from './$types';
 
 export const actions: Actions = {
     async default({ request, locals: { supabase }, cookies }) {
