@@ -16,10 +16,6 @@
 	};
 </script>
 
-<svelte:head>
-	<title>Email and Password Demo - Supabase Auth Helpers</title>
-</svelte:head>
-
 <div class="row">
 	<h1 style="margin-top: 12px;">StudyJam Assignment</h1>
 
@@ -27,7 +23,7 @@
 		<form action="/logout" method="post" use:enhance={handleLogout}>
 			<button disabled={loading} type="submit" style="margin: 0">Logout</button>
 		</form>
-    {:else}
+	{:else}
 		<form action="/signin">
 			<button type="submit" style="margin: 0">Login</button>
 		</form>
