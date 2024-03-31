@@ -351,6 +351,19 @@
 	<a href="https://laravel.com/docs/11.x/validation">berikut</a>.
 </p>
 
+<a href="#optional-criteria-2">
+	<h2 id="optional-criteria-2">Kriteria Opsional 2: Query Parameter untuk Pencarian Lagu</h2>
+</a>
+<p>
+	Menerapkan query parameter pada endpoint <strong>GET /api/musics</strong> untuk fitur pencarian musik.
+	Berikut ketentuan parameternya:
+</p>
+<ul>
+	<li>?title: mencari musik berdasarkan judul musik.</li>
+	<li>?artist: mencari musik berdasarkan artist.</li>
+</ul>
+<small>*Penggunaan kedua parameter tersebut dapat dikombinasikan.</small>
+
 <a href="#notes"><h2 id="notes">Catatan</h2></a>
 <ul>
 	<li>Semua response dan request body yang disebutkan di atas dikirim dalam format JSON.</li>
