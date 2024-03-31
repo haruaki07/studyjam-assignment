@@ -2,46 +2,50 @@
 	import { dedent } from 'ts-dedent';
 
 	const criteria5BodyReq = dedent(`{
-        "title": string,
-        "year": number,
-        "artist": string,
-        "genre": string,
-        "duration": number
-    }`);
+      "title": string,
+      "year": number,
+      "artist": string,
+      "genre": string,
+      "duration": number
+  }`);
 	const criteria5MusicScheme = dedent(`{
-        <strong>"id": 1,</strong>
-        "title": "Hey Jude", 
-        "year": 1968,
-        "artist": "The Beatles",  
-        "genre": "Pop rock",
-        "duration": 430,
-        <strong>"created_at": 2024-03-31T03:20:51Z,</strong>
-        <strong>"updated_at": 2024-03-31T04:02:55Z</strong>
-    }`);
+      <strong>"id": 1,</strong>
+      "title": "Hey Jude", 
+      "year": 1968,
+      "artist": "The Beatles",  
+      "genre": "Pop rock",
+      "duration": 430,
+      <strong>"created_at": 2024-03-31T03:20:51Z,</strong>
+      <strong>"updated_at": 2024-03-31T04:02:55Z</strong>
+  }`);
 	const criteria5ResponseSuccess = dedent(`{
-        "id": 2,
-        "title": "Arkadia", 
-        "year": 2019,
-        "artist": "Babymetal",
-        "genre": "Metal",
-        "duration": 319,
-        "created_at": 2024-03-31T03:20:51Z,
-        "updated_at": 2024-03-31T04:02:55Z
-    }`);
+      "id": 2,
+      "title": "Arkadia", 
+      "year": 2019,
+      "artist": "Babymetal",
+      "genre": "Metal",
+      "duration": 319,
+      "created_at": 2024-03-31T03:20:51Z,
+      "updated_at": 2024-03-31T04:02:55Z
+  }`);
 
 	const criteria6ResponseSuccess = dedent(`[
-        {
-            "id": 1,
-            "title": "Hey Jude",
-            "artist": "The Beatles",
-        },
-        {
-            "id": 2,
-            "title": "Arkadia",
-            "artist": "Babymetal",
-        }
-    ]`);
+      {
+          "id": 1,
+          "title": "Hey Jude",
+          "artist": "The Beatles",
+      },
+      {
+          "id": 2,
+          "title": "Arkadia",
+          "artist": "Babymetal",
+      }
+  ]`);
 	const criteria6ResponseSuccessEmpty = `[]`;
+	const criteria7ResponseNotFound = dedent(`{
+      "status": "failed",
+      "message": "Musik tidak ditemukan"
+  }`);
 </script>
 
 <p>Terdapat beberapa kriteria utama yang harus Anda penuhi dalam membuat proyek Music API.</p>
@@ -186,3 +190,32 @@
 </ul>
 <p>Jika belum terdapat musik yang dimasukkan, server bisa merespons dengan array kosong.</p>
 <pre><code>{criteria6ResponseSuccessEmpty}</code></pre>
+
+<a href="#criteria-7"><h2 id="criteria-7">Kriteria 7: API dapat menampilkan detail musik</h2></a>
+<p>API yang Anda buat harus dapat menampilkan detail musik yang disimpan melalui route:</p>
+<ul>
+	<li>Method: <strong>GET</strong></li>
+	<li>URL: <strong>/api/musics/&lbrace;id&rbrace;</strong></li>
+</ul>
+<p>
+	Bila musik dengan <code>id</code> yang dilampirkan ditemukan, maka server harus mengembalikan respons
+	dengan:
+</p>
+<ul>
+	<li>Status code: <strong>200</strong></li>
+	<li>
+		Response body:
+		<pre><code>{criteria5ResponseSuccess}</code></pre>
+	</li>
+</ul>
+<p>
+	Bila musik dengan <code>id</code> yang dilampirkan oleh client tidak ditemukan, maka server harus mengembalikan
+	respons dengan:
+</p>
+<ul>
+	<li>Status code: <strong>404</strong></li>
+	<li>
+		Response body:
+		<pre><code>{criteria7ResponseNotFound}</code></pre>
+	</li>
+</ul>
