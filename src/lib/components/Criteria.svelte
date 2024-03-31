@@ -270,3 +270,33 @@
 		<pre><code>{criteria7ResponseNotFound}</code></pre>
 	</li>
 </ul>
+
+<a href="#criteria-9"><h2 id="criteria-9">Kriteria 9: API dapat menghapus musik</h2></a>
+<p>API yang Anda buat harus dapat menghapus detail musik yang disimpan melalui route:</p>
+<ul>
+	<li>Method: <strong>DELETE</strong></li>
+	<li>URL: <strong>/api/musics/&lbrace;id&rbrace;</strong></li>
+</ul>
+<p>
+	Bila musik <strong>berhasil dihapus</strong>, server harus mengembalikan respons berikut:
+</p>
+<ul>
+	<li>Status code: <strong>204</strong></li>
+	<li>Response body: empty (kosong)</li>
+</ul>
+<p>
+	Bila musik dengan <code>id</code> yang dilampirkan oleh client <strong>tidak ditemukan</strong>,
+	maka server harus mengembalikan respons dengan:
+</p>
+<ul>
+	<li>Status code: <strong>404</strong></li>
+	<li>
+		Response body:
+		<pre><code>{criteria7ResponseNotFound}</code></pre>
+	</li>
+</ul>
+
+<a href="#notes"><h2 id="notes">Catatan</h2></a>
+<ul>
+	<li>Semua response dan request body yang disebutkan di atas dikirim dalam format JSON.</li>
+</ul>
