@@ -10,7 +10,7 @@
     }`);
 	const criteria5MusicScheme = dedent(`{
         <strong>"id": 1,</strong>
-        "title": "The Jude", 
+        "title": "Hey Jude", 
         "year": 1968,
         "artist": "The Beatles",  
         "genre": "Pop rock",
@@ -28,6 +28,20 @@
         "created_at": 2024-03-31T03:20:51Z,
         "updated_at": 2024-03-31T04:02:55Z
     }`);
+
+	const criteria6ResponseSuccess = dedent(`[
+        {
+            "id": 1,
+            "title": "Hey Jude",
+            "artist": "The Beatles",
+        },
+        {
+            "id": 2,
+            "title": "Arkadia",
+            "artist": "Babymetal",
+        }
+    ]`);
+	const criteria6ResponseSuccessEmpty = `[]`;
 </script>
 
 <p>Terdapat beberapa kriteria utama yang harus Anda penuhi dalam membuat proyek Music API.</p>
@@ -155,3 +169,20 @@
 		<pre><code>{criteria5ResponseSuccess}</code></pre>
 	</li>
 </ul>
+
+<a href="#criteria-6"><h2 id="criteria-6">Kriteria 6: API dapat menampilkan seluruh musik</h2></a>
+<p>API yang Anda buat harus dapat menampilkan seluruh musik yang disimpan melalui route:</p>
+<ul>
+	<li>Method: <strong>GET</strong></li>
+	<li>URL: <strong>/api/musics</strong></li>
+</ul>
+<p>Server harus mengembalikan response dengan:</p>
+<ul>
+	<li>Status code: <strong>200</strong></li>
+	<li>
+		Response body:
+		<pre><code>{criteria6ResponseSuccess}</code></pre>
+	</li>
+</ul>
+<p>Jika belum terdapat musik yang dimasukkan, server bisa merespons dengan array kosong.</p>
+<pre><code>{criteria6ResponseSuccessEmpty}</code></pre>
