@@ -63,6 +63,17 @@
       "created_at": 2024-03-31T03:20:51Z,
       "updated_at": 2024-04-31T11:13:29Z
   }`);
+	const optCriteria1ValidationError = dedent(`{
+      "message": "The title field is required. (and 1 more error)",
+      "errors": {
+          "title": [
+              "The title field is required."
+          ],
+          "duration": [
+              "The duration field is required."
+          ]
+      }
+  }`);
 </script>
 
 <p>Terdapat beberapa kriteria utama yang harus Anda penuhi dalam membuat proyek Music API.</p>
@@ -295,6 +306,50 @@
 		<pre><code>{criteria7ResponseNotFound}</code></pre>
 	</li>
 </ul>
+
+<a href="#optional-criteria"><h2 id="optional-criteria">Kriteria Opsional</h2></a>
+<p>
+	Selain kriteria utama, terdapat kriteria opsional yang yang dapat Anda penuhi agar mendapat nilai
+	yang baik.
+</p>
+
+<a href="#optional-criteria-1">
+	<h2 id="optional-criteria-1">Kriteria Opsional 1: Menerapkan data validation</h2>
+</a>
+<p>Menerapkan proses Data Validation pada Request Payload sesuai spesifikasi berikut:</p>
+<ul>
+	<li>
+		POST /api/musics
+		<ul>
+			<li><strong>title</strong>: required, string</li>
+			<li><strong>year</strong>: required, number</li>
+			<li><strong>artist</strong>: required, string</li>
+			<li><strong>genre</strong>: required, string</li>
+			<li><strong>duration</strong>: required, number</li>
+		</ul>
+	</li>
+	<li>
+		PUT /api/musics/&lbrace;id&rbrace;
+		<ul>
+			<li><strong>title</strong>: string</li>
+			<li><strong>year</strong>: number</li>
+			<li><strong>artist</strong>: string</li>
+			<li><strong>genre</strong>: string</li>
+			<li><strong>duration</strong>: number</li>
+		</ul>
+	</li>
+</ul>
+<p>
+	Jika terdapat request body yang tidak valid, maka server harus mengembalikan response sebagai
+	berikut:
+</p>
+<pre><code>{optCriteria1ValidationError}</code></pre>
+<p>
+	Jika menggunakan fitur Validation bawaan pada Laravel, maka server otomatis merespons seperti di
+	atas jika terdapat input yang tidak valid. Untuk informasi lebih lanjut mengenai Validation pada
+	Laravel bisa membuka link
+	<a href="https://laravel.com/docs/11.x/validation">berikut</a>.
+</p>
 
 <a href="#notes"><h2 id="notes">Catatan</h2></a>
 <ul>
