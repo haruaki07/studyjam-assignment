@@ -6,7 +6,7 @@
         "year": number,
         "artist": string,
         "genre": string,
-        "duration": number,
+        "duration": number
     }`);
 	const criteria1MusicScheme = dedent(`{
         <strong>"id": 1,</strong>
@@ -23,20 +23,34 @@
 <p>Terdapat beberapa kriteria utama yang harus Anda penuhi dalam membuat proyek Music API.</p>
 
 <h2 id="criteria-1">Kriteria 1: Menggunakan Laravel</h2>
-<p>
-	Aplikasi Anda harus dibuat menggunakan <a href="https://laravel.com/">Laravel</a>, dengan minimal
-	versi 9 (diperbolehkan menggunakan versi 9, 10, atau 11). Pastikan Anda menginstal versi Laravel
-	yang sesuai sebelum memulai membuat aplikasi. Untuk informasi lebih lanjut bisa membuka
-	dokumentasi
-	<i>official</i>
-	Laravel
-	<a href="https://laravel.com/docs/11.x/installation">disini</a>.
-</p>
+<ul>
+	<li>
+		API harus dibuat menggunakan <a href="https://laravel.com/">Laravel</a>, dengan minimal versi 9
+		(diperbolehkan menggunakan versi 9, 10, atau 11).
+	</li>
+	<li>
+		Pastikan Anda menginstal versi Laravel yang sesuai sebelum memulai membuat aplikasi. Untuk
+		informasi lebih lanjut bisa membuka dokumentasi <i>official</i>
+		Laravel <a href="https://laravel.com/docs/11.x/installation">disini</a>.
+	</li>
+	<li>
+		Perlu diperhatikan bahwa setiap versi Laravel mempunyai kebutuhan yang berbeda, sebagai contoh
+		Laravel 9 minimal harus menggunakan PHP 7.4.
+	</li>
+</ul>
 
-<p>
-	Perlu diperhatikan bahwa setiap versi Laravel mempunyai kenutuhan yang berbeda, sebagai contoh
-	Laravel 9 minimal harus menggunakan PHP 7.4.
-</p>
+<h2 id="criteria-1">Kriteria 2: Menggunakan MySQL sebagai database</h2>
+<ul>
+	<li>Data harus disimpan di dalam database menggunakan <strong>MySQL</strong>.</li>
+	<li>
+		<strong>Wajib</strong> mengkonfigurasi database seperti host, port, maupun kredensial dalam
+		mengakses ke database pada file <code>.env</code>.
+	</li>
+	<li>
+		Untuk informasi lebih lanjut mengenai tata cara menggunakan database MySQL di Laravel bisa
+		membuka dokumentasi <a href="https://laravel.com/docs/11.x/database">berikut</a>.
+	</li>
+</ul>
 
 <h2 id="criteria-1">Kriteria 1: API dapat menyimpan musik</h2>
 <p>API yang anda buat harus dapat menyimpan musik melalui route:</p>
@@ -62,9 +76,9 @@
 		<li>
 			<code>id</code>: nilai <code>id</code> haruslah unik. Untuk membuat nilai unik, Anda bisa
 			memanfaatkan fitur
-			<a href="https://laravel.com/docs/11.x/migrations#column-method-increments"
-				><code>increments()</code></a
-			>
+			<a href="https://laravel.com/docs/11.x/migrations#column-method-increments">
+				<code>increments()</code>
+			</a>
 			pada file migration, atau bisa menggunakan
 			<a href="https://laravel.com/docs/11.x/eloquent#uuid-and-ulid-keys">UUID</a>. Anda bisa
 			pelajari tentang primary key pada Laravel
@@ -73,9 +87,9 @@
 		<li>
 			<code>created_at</code>: merupakan properti yang menampung tanggal dimasukkannya musik. Anda
 			bisa menggunakan
-			<a href="https://laravel.com/docs/11.x/migrations#column-method-timestamps"
-				><code>timestamps()</code></a
-			> pada file migration Anda. Pada Laravel, properti ini otomatis terisi, jadi tidak perlu mengisi
+			<a href="https://laravel.com/docs/11.x/migrations#column-method-timestamps">
+				<code>timestamps()</code>
+			</a> pada file migration Anda. Pada Laravel, properti ini otomatis terisi, jadi tidak perlu mengisi
 			manual.
 		</li>
 		<li>
