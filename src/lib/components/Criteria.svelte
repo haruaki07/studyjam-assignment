@@ -1,5 +1,5 @@
-<script>
-	import dedent from 'ts-dedent';
+<script lang="ts">
+	import { dedent } from 'ts-dedent';
 
 	const criteria1BodyReq = dedent(`{
         "title": string,
@@ -22,7 +22,7 @@
 
 <p>Terdapat beberapa kriteria utama yang harus Anda penuhi dalam membuat proyek Music API.</p>
 
-<h2 id="criteria-1">Kriteria 1: Menggunakan Laravel</h2>
+<a href="#criteria-1"><h2 id="criteria-1">Kriteria 1: Menggunakan Laravel</h2></a>
 <ul>
 	<li>
 		API harus dibuat menggunakan <a href="https://laravel.com/">Laravel</a>, dengan minimal versi 9
@@ -39,7 +39,7 @@
 	</li>
 </ul>
 
-<h2 id="criteria-1">Kriteria 2: Menggunakan MySQL sebagai database</h2>
+<a href="#criteria-2"><h2 id="criteria-2">Kriteria 2: Menggunakan MySQL sebagai database</h2></a>
 <ul>
 	<li>Data harus disimpan di dalam database menggunakan <strong>MySQL</strong>.</li>
 	<li>
@@ -49,6 +49,20 @@
 	<li>
 		Untuk informasi lebih lanjut mengenai tata cara menggunakan database MySQL di Laravel bisa
 		membuka dokumentasi <a href="https://laravel.com/docs/11.x/database">berikut</a>.
+	</li>
+</ul>
+
+<a href="#criteria-3"><h2 id="criteria-3">Kriteria 3: Menggunakan database migration</h2></a>
+<ul>
+	<li>
+		<strong>Wajib</strong> menggunakan teknik migrations dalam mengelola struktur tabel pada database.
+	</li>
+	<li>
+		Jalankan perintah <code>php artisan make:migration &lt;nama_migration&gt;</code> untuk membuat migration.
+	</li>
+	<li>
+		Baca dokumentasi mengenai database migration
+		<a href="https://laravel.com/docs/11.x/migrations">disini</a>.
 	</li>
 </ul>
 
