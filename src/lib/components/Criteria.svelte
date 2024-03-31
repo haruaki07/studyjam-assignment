@@ -22,6 +22,22 @@
 
 <p>Terdapat beberapa kriteria utama yang harus Anda penuhi dalam membuat proyek Music API.</p>
 
+<h2 id="criteria-1">Kriteria 1: Menggunakan Laravel</h2>
+<p>
+	Aplikasi Anda harus dibuat menggunakan <a href="https://laravel.com/">Laravel</a>, dengan minimal
+	versi 9 (diperbolehkan menggunakan versi 9, 10, atau 11). Pastikan Anda menginstal versi Laravel
+	yang sesuai sebelum memulai membuat aplikasi. Untuk informasi lebih lanjut bisa membuka
+	dokumentasi
+	<i>official</i>
+	Laravel
+	<a href="https://laravel.com/docs/11.x/installation">disini</a>.
+</p>
+
+<p>
+	Perlu diperhatikan bahwa setiap versi Laravel mempunyai kenutuhan yang berbeda, sebagai contoh
+	Laravel 9 minimal harus menggunakan PHP 7.4.
+</p>
+
 <h2 id="criteria-1">Kriteria 1: API dapat menyimpan musik</h2>
 <p>API yang anda buat harus dapat menyimpan musik melalui route:</p>
 <ul>
