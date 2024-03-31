@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { dedent } from 'ts-dedent';
 
-	const criteria1BodyReq = dedent(`{
+	const criteria5BodyReq = dedent(`{
         "title": string,
         "year": number,
         "artist": string,
         "genre": string,
         "duration": number
     }`);
-	const criteria1MusicScheme = dedent(`{
+	const criteria5MusicScheme = dedent(`{
         <strong>"id": 1,</strong>
         "title": "The Jude", 
         "year": 1968,
@@ -17,6 +17,16 @@
         "duration": 430,
         <strong>"created_at": 2024-03-31T03:20:51Z,</strong>
         <strong>"updated_at": 2024-03-31T04:02:55Z</strong>
+    }`);
+	const criteria5ResponseSuccess = dedent(`{
+        "id": 2,
+        "title": "Arkadia", 
+        "year": 2019,
+        "artist": "Babymetal",
+        "genre": "Metal",
+        "duration": 319,
+        "created_at": 2024-03-31T03:20:51Z,
+        "updated_at": 2024-03-31T04:02:55Z
     }`);
 </script>
 
@@ -87,21 +97,21 @@
 	<a href="https://laravel.com/docs/11.x/structure#the-routes-directory">disini</a>.
 </small>
 
-<h2 id="criteria-1">Kriteria 1: API dapat menyimpan musik</h2>
+<a href="#criteria-5"><h2 id="criteria-5">Kriteria 5: API dapat menyimpan musik</h2></a>
 <p>API yang anda buat harus dapat menyimpan musik melalui route:</p>
 <ul>
 	<li>Method: <strong>POST</strong></li>
 	<li>URL: <strong>/api/musics</strong></li>
 	<li>
 		Body Request:
-		<pre><code>{criteria1BodyReq}</code></pre>
+		<pre><code>{criteria5BodyReq}</code></pre>
 	</li>
 </ul>
 <p>
 	Objek musik yang disimpan pada <i>server</i> <strong>harus</strong> memiliki struktur seperti contoh
 	di bawah ini:
 </p>
-<pre><code>{@html criteria1MusicScheme}</code></pre>
+<pre><code>{@html criteria5MusicScheme}</code></pre>
 <details>
 	<summary>
 		Properti yang ditebalkan diolah dan di-<i>generate</i> di sisi server. Berikut penjelasannya:
@@ -134,3 +144,14 @@
 		</li>
 	</ul>
 </details>
+<p>
+	Bila musik berhasil dimasukkan, server harus mengembalikan respons data musik yang baru
+	ditambahkan:
+</p>
+<ul>
+	<li>Status code: <strong>201</strong></li>
+	<li>
+		Response body:
+		<pre><code>{criteria5ResponseSuccess}</code></pre>
+	</li>
+</ul>
