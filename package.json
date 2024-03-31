@@ -31,6 +31,7 @@
 		"i18next": "^23.10.1",
 		"normalize.css": "^8.0.1",
 		"sveltekit-superforms": "^2.12.2",
+		"ts-dedent": "^2.2.0",
 		"zod": "^3.22.4",
 		"zod-i18n-map": "^2.27.0"
 	}
