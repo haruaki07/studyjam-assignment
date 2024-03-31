@@ -2,6 +2,7 @@
 	import Criteria from '$lib/components/Criteria.svelte';
 	import Flash from '$lib/components/Flash.svelte';
 	import InstructionTabs from '$lib/components/InstructionTabs.svelte';
+	import Introduction from '$lib/components/Introduction.svelte';
 	import Recommendation from '$lib/components/Recommendation.svelte';
 	import type { PageData } from './$types';
 
@@ -12,7 +13,9 @@
 
 <InstructionTabs tabs={data.tabs} currentTab={data.tab} />
 
-{#if data.tab === 'kriteria'}
+{#if data.tab === 'pengantar'}
+	<Introduction />
+{:else if data.tab === 'kriteria'}
 	<Criteria />
 {:else if data.tab === 'saran'}
 	<Recommendation />

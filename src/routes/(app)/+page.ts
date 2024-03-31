@@ -2,7 +2,7 @@
 import { redirect } from "@sveltejs/kit";
 import type { PageLoad } from "./$types";
 
-const tabs = ["kriteria", "saran"] as const
+const tabs = ["pengantar", "kriteria", "saran"] as const
 type Tab = typeof tabs[number];
 
 export const load: PageLoad = async ({ url }) => {
