@@ -10,6 +10,9 @@ export const handle: Handle = async ({ event, resolve }) => {
     });
 
     event.locals.getSession = async () => {
+        // suppress warning
+        await event.locals.supabase.auth.getUser();
+
         const {
             data: { session }
         } = await event.locals.supabase.auth.getSession();
@@ -18,7 +21,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
     return resolve(event, {
         filterSerializedResponseHeaders(name) {
-            return name === 'content-range';
+            return ['content-range', 'x-supabase-api-version'].includes(name)
         }
     });
 };
