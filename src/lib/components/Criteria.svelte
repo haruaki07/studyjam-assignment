@@ -44,7 +44,24 @@
 	const criteria6ResponseSuccessEmpty = `[]`;
 	const criteria7ResponseNotFound = dedent(`{
       "status": "failed",
-      "message": "Musik tidak ditemukan"
+      "message": "musik tidak ditemukan"
+  }`);
+	const criteria8BodyReq = dedent(`{
+      "title": ?string,
+      "year": ?number,
+      "artist": ?string,
+      "genre": ?string,
+      "duration": ?number
+  }`);
+	const criteria8ResponseSuccess = dedent(`{
+      "id": 2,
+      "title": "Arkadia", 
+      "year": 2019,
+      "artist": "Babymetal",
+      "genre": "J-Pop",
+      "duration": 319,
+      "created_at": 2024-03-31T03:20:51Z,
+      "updated_at": 2024-04-31T11:13:29Z
   }`);
 </script>
 
@@ -198,8 +215,8 @@
 	<li>URL: <strong>/api/musics/&lbrace;id&rbrace;</strong></li>
 </ul>
 <p>
-	Bila musik dengan <code>id</code> yang dilampirkan ditemukan, maka server harus mengembalikan respons
-	dengan:
+	Bila musik dengan <code>id</code> yang dilampirkan <strong>ditemukan</strong>, maka server harus
+	mengembalikan respons dengan:
 </p>
 <ul>
 	<li>Status code: <strong>200</strong></li>
@@ -209,8 +226,42 @@
 	</li>
 </ul>
 <p>
-	Bila musik dengan <code>id</code> yang dilampirkan oleh client tidak ditemukan, maka server harus mengembalikan
-	respons dengan:
+	Bila musik dengan <code>id</code> yang dilampirkan oleh client <strong>tidak ditemukan</strong>,
+	maka server harus mengembalikan respons dengan:
+</p>
+<ul>
+	<li>Status code: <strong>404</strong></li>
+	<li>
+		Response body:
+		<pre><code>{criteria7ResponseNotFound}</code></pre>
+	</li>
+</ul>
+
+<a href="#criteria-8"><h2 id="criteria-8">Kriteria 8: API dapat mengubah data musik</h2></a>
+<p>API yang Anda buat harus dapat menampilkan detail musik yang disimpan melalui route:</p>
+<ul>
+	<li>Method: <strong>PUT</strong></li>
+	<li>URL: <strong>/api/musics/&lbrace;id&rbrace;</strong></li>
+	<li>
+		Request body:
+		<pre><code>{criteria8BodyReq}</code></pre>
+		<small>*Semua field pada request body opsional.</small>
+	</li>
+</ul>
+<p>
+	Bila musik <strong>berhasil diperbarui</strong>, server harus mengembalikan respons dengan data
+	musik terbaru:
+</p>
+<ul>
+	<li>Status code: <strong>200</strong></li>
+	<li>
+		Response body:
+		<pre><code>{criteria8ResponseSuccess}</code></pre>
+	</li>
+</ul>
+<p>
+	Bila musik dengan <code>id</code> yang dilampirkan oleh client <strong>tidak ditemukan</strong>,
+	maka server harus mengembalikan respons dengan:
 </p>
 <ul>
 	<li>Status code: <strong>404</strong></li>
