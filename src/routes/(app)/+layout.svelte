@@ -17,7 +17,7 @@
 </script>
 
 <div class="row">
-	<h1 style="margin-top: 12px;">StudyJam Assignment</h1>
+	<a href="/"><h1 style="margin-top: 12px;">StudyJam Assignment</h1></a>
 
 	{#if $page.data.session}
 		<form action="/logout" method="post" use:enhance={handleLogout}>

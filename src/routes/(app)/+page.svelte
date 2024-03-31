@@ -6,8 +6,8 @@
 	export let data: PageData;
 
 	const contentComponents = {
-		criteria: () => import('$lib/components/Criteria.svelte'),
-		recommendation: () => import('$lib/components/Recommendation.svelte')
+		kriteria: () => import('$lib/components/Criteria.svelte'),
+		saran: () => import('$lib/components/Recommendation.svelte')
 	};
 </script>
 
