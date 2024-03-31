@@ -66,6 +66,27 @@
 	</li>
 </ul>
 
+<a href="#criteria-4"><h2 id="criteria-4">Kriteria 4: Menggunakan API Routes</h2></a>
+<ul>
+	<li>
+		<strong>Wajib</strong> menggunakan API route pada laravel (route dibuat pada file
+		<code>routes/api.php</code>).
+	</li>
+	<li>
+		Karena routes didefinisikan pada file <code>routes/api.php</code>, maka otomatis route akan
+		diberi prefix <code>/api</code>.
+	</li>
+	<li>
+		Untuk melihat routes pada aplikasi laravel Anda, bisa menjalankan perintah
+		<code>php artisan route:list</code>.
+	</li>
+</ul>
+<small>
+	*Jika Anda menggunakan Laravel 11, maka perlu menjalankan perintah
+	<code>php artisan install:api</code> sebelum mendefinisikan routes. Baca lebih lengkap
+	<a href="https://laravel.com/docs/11.x/structure#the-routes-directory">disini</a>.
+</small>
+
 <h2 id="criteria-1">Kriteria 1: API dapat menyimpan musik</h2>
 <p>API yang anda buat harus dapat menyimpan musik melalui route:</p>
 <ul>
