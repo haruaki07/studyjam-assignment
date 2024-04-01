@@ -1,25 +1,30 @@
 :root {
-    --color-red: #ff7f7f;
-    --color-green: #6eff87;
+	--color-red: #ff7f7f;
+	--color-green: #6eff87;
+	--color-amber: #ffbf00;
 }
 
 .red {
-    color: var(--color-red);
+	color: var(--color-red);
 }
 
 .green {
-    color: var(--color-green);
+	color: var(--color-green);
+}
+
+.amber {
+	color: var(--color-amber);
 }
 
 .input-err {
-    color: var(--color-red);
-    display: block;
-    margin-bottom: 6px;
+	color: var(--color-red);
+	display: block;
+	margin-bottom: 6px;
 }
 
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
 }
