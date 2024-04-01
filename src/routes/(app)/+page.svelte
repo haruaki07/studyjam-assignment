@@ -3,6 +3,7 @@
 	import Flash from '$lib/components/Flash.svelte';
 	import InstructionTabs from '$lib/components/InstructionTabs.svelte';
 	import Introduction from '$lib/components/Introduction.svelte';
+	import Others from '$lib/components/Others.svelte';
 	import Recommendation from '$lib/components/Recommendation.svelte';
 	import Testing from '$lib/components/Testing.svelte';
 	import type { PageData } from './$types';
@@ -22,4 +23,6 @@
 	<Testing />
 {:else if data.tab === 'saran'}
 	<Recommendation />
+{:else if data.tab === 'lainnya'}
+	<Others />
 {/if}
