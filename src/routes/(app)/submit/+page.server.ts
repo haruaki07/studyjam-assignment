@@ -19,7 +19,7 @@ export const actions: Actions = {
 		const {
 			data: { user }
 		} = await supabase.auth.getUser();
-		const fileName = `${Date.now()}_submission_${user?.id}`;
+		const fileName = `${Date.now()}_submission_${user?.id}.zip`;
 
 		try {
 			const { data, error: err } = await supabase.storage
@@ -40,7 +40,7 @@ export const actions: Actions = {
 		}
 
 		redirect(
-			'/my-submission',
+			'/my',
 			{ type: 'success', message: 'Submission Anda telah diupload! Mohon tunggu untuk direview.' },
 			cookies
 		);
