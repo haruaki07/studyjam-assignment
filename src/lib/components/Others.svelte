@@ -1,4 +1,4 @@
-<h2>Ketentuan Berkas Submission</h2>
+<h2 id="ketentuan-berkas">Ketentuan Berkas Submission</h2>
 <ul>
 	<li>
 		Berkas submission yang dikirim merupakan folder proyek dari MusicShelf API yang dikompres dalam
