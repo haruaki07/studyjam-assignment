@@ -4,6 +4,7 @@
 	import InstructionTabs from '$lib/components/InstructionTabs.svelte';
 	import Introduction from '$lib/components/Introduction.svelte';
 	import Recommendation from '$lib/components/Recommendation.svelte';
+	import Testing from '$lib/components/Testing.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -17,6 +18,8 @@
 	<Introduction />
 {:else if data.tab === 'kriteria'}
 	<Criteria />
+{:else if data.tab === 'pengujian'}
+	<Testing />
 {:else if data.tab === 'saran'}
 	<Recommendation />
 {/if}

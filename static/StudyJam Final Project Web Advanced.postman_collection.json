@@ -1,0 +1,445 @@
+{
+	"info": {
+		"_postman_id": "a6c303ba-5d98-4811-aa80-0c22237cf968",
+		"name": "StudyJam Final Project Web Advanced",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18194117",
+		"_collection_link": "https://orange-firefly-556874.postman.co/workspace/Team-Workspace~0055d174-290b-4adb-807e-888f918f7174/collection/18194117-a6c303ba-5d98-4811-aa80-0c22237cf968?action=share&source=collection_link&creator=18194117"
+	},
+	"item": [
+		{
+			"name": "Music",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('it should response 201 status code', () => {\r",
+									"    pm.expect(pm.response).to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body have correct property and value', () => {\r",
+									"    const music = pm.response.json();\r",
+									"\r",
+									"    pm.collectionVariables.set(\"music_id\", music.id);\r",
+									"\r",
+									"    pm.expect(music.id).to.be.ok;\r",
+									"    pm.expect(music.title).to.equal(\"Hey Jude\");\r",
+									"    pm.expect(music.year).to.equal(1968);\r",
+									"    pm.expect(music.artist).to.equal(\"The Beatles\")\r",
+									"    pm.expect(music.genre).to.equal(\"Pop rock\");\r",
+									"    pm.expect(music.duration).to.equal(430);\r",
+									"    pm.expect(music.created_at).to.be.ok;\r",
+									"    pm.expect(music.updated_at).to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Hey Jude\",\r\n    \"year\": 1968,\r\n    \"artist\": \"The Beatles\",\r\n    \"genre\": \"Pop rock\",\r\n    \"duration\": 430\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/musics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"musics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('it should response 200 status code', () => {\r",
+									"    pm.expect(pm.response).to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body have correct property and value', () => {\r",
+									"    const musics = pm.response.json();\r",
+									"    musics.forEach((music) => {\r",
+									"        pm.expect(Object.keys(music)).to.length(3);\r",
+									"        pm.expect(music.id).to.be.ok;\r",
+									"        pm.expect(music.title).to.be.ok;\r",
+									"        pm.expect(music.artist).to.be.ok;\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/musics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"musics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('it should response 200 status code', () => {\r",
+									"    pm.expect(pm.response).to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body have correct property and value', () => {\r",
+									"    const music = pm.response.json();\r",
+									"\r",
+									"    pm.expect(music.id).to.be.ok;\r",
+									"    pm.expect(music.title).to.be.ok;\r",
+									"    pm.expect(music.year).to.be.ok;\r",
+									"    pm.expect(music.artist).to.be.ok;\r",
+									"    pm.expect(music.genre).to.be.ok;\r",
+									"    pm.expect(music.duration).to.be.ok;\r",
+									"    pm.expect(music.created_at).to.be.ok;\r",
+									"    pm.expect(music.updated_at).to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/musics/{{music_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"musics",
+								"{{music_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail [Not Found]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('it should response 404 status code', () => {\r",
+									"    pm.expect(pm.response).to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body have correct property and value', () => {\r",
+									"    const res = pm.response.json();\r",
+									"\r",
+									"    pm.expect(res.status).to.equal(\"failed\");\r",
+									"    pm.expect(res.message).to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/musics/999",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"musics",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('it should response 200 status code', () => {\r",
+									"    pm.expect(pm.response).to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body have correct property and value', () => {\r",
+									"    const music = pm.response.json();\r",
+									"\r",
+									"    pm.expect(music.id).to.be.ok;\r",
+									"    pm.expect(music.title).to.equal(\"Hey Jules\");\r",
+									"    pm.expect(music.year).to.equal(1968);\r",
+									"    pm.expect(music.artist).to.equal(\"The Beatles\");\r",
+									"    pm.expect(music.genre).to.equal(\"Pop rock\");\r",
+									"    pm.expect(music.duration).to.equal(420);\r",
+									"    pm.expect(music.created_at).to.be.ok;\r",
+									"    pm.expect(music.updated_at).to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Hey Jules\",\r\n    \"duration\": 420\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/musics/{{music_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"musics",
+								"{{music_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit [Not Found]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('it should response 404 status code', () => {\r",
+									"    pm.expect(pm.response).to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body have correct property and value', () => {\r",
+									"    const res = pm.response.json();\r",
+									"\r",
+									"    pm.expect(res.status).to.equal(\"failed\");\r",
+									"    pm.expect(res.message).to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Hey Jules\",\r\n    \"duration\": 420\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/musics/999",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"musics",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('it should response 204 status code', () => {\r",
+									"    pm.expect(pm.response).to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/musics/{{music_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"musics",
+								"{{music_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete [Not Found]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('it should response 404 status code', () => {\r",
+									"    pm.expect(pm.response).to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body have correct property and value', () => {\r",
+									"    const res = pm.response.json();\r",
+									"\r",
+									"    pm.expect(res.status).to.equal(\"failed\");\r",
+									"    pm.expect(res.message).to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/musics/999",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"musics",
+								"999"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "music_id",
+			"value": ""
+		}
+	]
+}
