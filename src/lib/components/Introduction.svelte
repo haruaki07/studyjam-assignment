@@ -1,5 +1,5 @@
 <p>
-	Selamat! Akhirnya Anda telah sampai ke tahap Mini Project StudyJam Web Programming Advanced.
+	Selamat! Akhirnya Anda telah sampai ke tahap Final Project StudyJam Web Programming Advanced.
 	Selama ini, Anda telah mempelajari:
 </p>
 
