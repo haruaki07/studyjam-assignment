@@ -32,6 +32,10 @@
 			{statusMap[data.submission.status]}
 		</span>
 	</p>
+	<details>
+		<summary><strong>Catatan peserta:</strong> (Klik untuk melihat)</summary>
+		{data.submission.notes}
+	</details>
 {:else}
 	<p class="red">Anda belum pernah mengumpulkan berkas submission!</p>
 {/if}
