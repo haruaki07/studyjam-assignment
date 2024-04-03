@@ -32,4 +32,6 @@
 			{statusMap[data.submission.status]}
 		</span>
 	</p>
+{:else}
+	<p class="red">Anda belum pernah mengumpulkan berkas submission!</p>
 {/if}
