@@ -1,7 +1,13 @@
 :root {
 	--color-red: #ff7f7f;
-	--color-green: #6eff87;
+	--color-green: #00cc66;
 	--color-amber: #ffbf00;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-green: #6eff87;
+	}
 }
 
 .red {
