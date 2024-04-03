@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Flash from '$lib/components/Flash.svelte';
 	import { SubmissionStatus } from '$lib/supabase';
 	import type { PageData } from './$types';
 
@@ -10,6 +11,8 @@
 		completed: 'Diterima'
 	};
 </script>
+
+<Flash />
 
 {#if data.submission}
 	<h2>Info Submission</h2>

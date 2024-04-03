@@ -4,7 +4,10 @@ import { redirect } from 'sveltekit-flash-message/server';
 import { SUPABASE_BUCKET_ID } from '$env/static/private';
 
 export const actions: Actions = {
-	default: async ({ request, cookies, locals: { supabase } }) => {
+	default: async ({ request, cookies, locals: { supabase, getSession } }) => {
+		const session = await getSession();
+		if (!session) return redirect(303, '/');
+
 		const formData = await request.formData();
 
 		const file = formData.get('file') as File | null;
@@ -16,9 +19,7 @@ export const actions: Actions = {
 		if (file.type !== 'application/zip')
 			return error(400, { message: 'Berkas submission harus dalam format ZIP!' });
 
-		const {
-			data: { user }
-		} = await supabase.auth.getUser();
+		const user = session.user;
 		const fileName = `${Date.now()}_submission_${user?.id}.zip`;
 
 		try {

@@ -2,16 +2,16 @@ import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import type { Submission } from '$lib/supabase';
 
-export const load: PageServerLoad = async ({ locals: { supabase }, parent }) => {
-	const { session } = await parent();
-	if (!session) redirect(303, '/signin');
+export const load: PageServerLoad = async ({ locals: { supabase, getSession } }) => {
+	const session = await getSession();
+	if (!session) redirect(303, '/');
 
 	try {
 		// get the latest submissions
 		const { data, error } = await supabase
 			.from('submissions')
 			.select('*')
-			.eq('user_id', session?.user.id)
+			.eq('user_id', session.user.id)
 			.order('attempt', { ascending: false })
 			.limit(1);
 		if (error) throw error;

@@ -20,12 +20,18 @@
 	<a href="/"><h1 style="margin-top: 12px;">StudyJam Assignment</h1></a>
 
 	{#if $page.data.session}
+		<form action="/my">
+			<button disabled={loading} type="submit">My Submission</button>
+		</form>
+		<form action="/submit">
+			<button disabled={loading} type="submit">Submit</button>
+		</form>
 		<form action="/logout" method="post" use:enhance={handleLogout}>
-			<button disabled={loading} type="submit" style="margin: 0">Logout</button>
+			<button disabled={loading} type="submit">Logout</button>
 		</form>
 	{:else}
 		<form action="/signin">
-			<button type="submit" style="margin: 0">Login</button>
+			<button type="submit">Login</button>
 		</form>
 	{/if}
 </div>

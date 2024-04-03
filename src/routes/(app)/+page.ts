@@ -1,16 +1,13 @@
+import type { PageLoad } from './$types';
 
-import { redirect } from "@sveltejs/kit";
-import type { PageLoad } from "./$types";
-
-const tabs = ["pengantar", "kriteria", "pengujian", "saran", "lainnya"] as const
-type Tab = typeof tabs[number];
+const tabs = ['pengantar', 'kriteria', 'pengujian', 'saran', 'lainnya'] as const;
+type Tab = (typeof tabs)[number];
 
 export const load: PageLoad = async ({ url }) => {
-    const tab = url.searchParams.get('tab') as Tab;
-    if (!tab || !tabs.includes(tab)) {
-        url.searchParams.set("tab", tabs[0]);
-        redirect(303, url);
-    }
+	let tab = url.searchParams.get('tab') as Tab | null;
+	if (!tab || !tabs.includes(tab)) {
+		tab = tabs[0];
+	}
 
-    return { tab, tabs }
+	return { tab, tabs };
 };

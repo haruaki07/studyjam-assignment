@@ -81,13 +81,16 @@
 		submitting = true;
 
 		return async ({ result }) => {
-			submitting = false;
-			if (result.type === 'error') {
-				error = result.error.message;
-				return;
-			}
+			try {
+				if (result.type === 'error') {
+					error = result.error.message;
+					return;
+				}
 
-			await applyAction(result);
+				await applyAction(result);
+			} finally {
+				submitting = false;
+			}
 		};
 	}}
 >
