@@ -36,6 +36,12 @@
 		<summary><strong>Catatan peserta:</strong> (Klik untuk melihat)</summary>
 		{data.submission.notes}
 	</details>
+	<p>
+		Berkas submission:
+		<a href={data.fileUrl} download>
+			{data.submission.file_url}
+		</a>
+	</p>
 {:else}
 	<p class="red">Anda belum pernah mengumpulkan berkas submission!</p>
 {/if}
