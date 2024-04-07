@@ -6,6 +6,7 @@
 	import type { LayoutData } from './$types';
 	import { initFlash } from 'sveltekit-flash-message';
 	import { page } from '$app/stores';
+	import { ProgressBar } from '@prgm/sveltekit-progress-bar';
 
 	export let data: LayoutData;
 
@@ -31,5 +32,7 @@
 <svelte:head>
 	<title>StudyJam Assignment</title>
 </svelte:head>
+
+<ProgressBar color="#41adff" />
 
 <slot />
