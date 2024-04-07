@@ -29,7 +29,7 @@
 		<form action="/logout" method="post" use:enhance={handleLogout}>
 			<button disabled={loading} type="submit">Logout</button>
 		</form>
-	{:else}
+	{:else if !['/signin', '/signup'].includes($page.url.pathname)}
 		<form action="/signin">
 			<button type="submit">Login</button>
 		</form>
