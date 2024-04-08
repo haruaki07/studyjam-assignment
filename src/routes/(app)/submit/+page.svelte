@@ -8,7 +8,7 @@
 	let error = '';
 
 	const handleChange = async (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => {
-		let reader!: ZipReader<unknown>;
+		let reader: ZipReader<unknown> | undefined = undefined;
 		try {
 			processing = true;
 			fileError = '';
@@ -48,7 +48,7 @@
 		} finally {
 			processing = false;
 			// close the ZipReader
-			await reader.close();
+			if (reader) await reader.close();
 		}
 	};
 
