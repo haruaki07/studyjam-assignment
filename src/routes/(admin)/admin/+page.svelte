@@ -64,7 +64,7 @@
 
 <dialog id="dialog" bind:this={dialogEl}>
 	<header>Review Submission</header>
-	<form method="dialog">
+	<form>
 		<fieldset>
 			<legend>Criteria Checklist</legend>
 			<div>
@@ -117,12 +117,13 @@
 
 		<label for="status">Mark as <small class="red">*</small></label>
 		<select name="status" id="status" required>
-			<option disabled hidden selected>Choose...</option>
+			<option hidden value="">Please select</option>
 			<option value={SubmissionStatus.Rejected}>Rejected</option>
 			<option value={SubmissionStatus.Completed}>Approved</option>
 		</select>
 
 		<br />
-		<button type="submit">Review</button>
+		<button type="submit" formmethod="post">Review</button>
+		<button type="submit" formmethod="dialog">Cancel</button>
 	</form>
 </dialog>
