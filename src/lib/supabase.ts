@@ -20,3 +20,12 @@ export type Submission = {
 	created_at: string;
 	updated_at: string;
 };
+
+export type Review = {
+	id: string;
+	submission_id: string;
+	notes: string;
+	criteria_checklist: string[];
+	code_review?: any;
+	created_at: string;
+};

@@ -1,6 +1,6 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import type { Submission } from '$lib/supabase';
+import type { Review, Submission } from '$lib/supabase';
 import { SUPABASE_BUCKET_ID } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession } }) => {
@@ -11,22 +11,23 @@ export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession 
 		// get the latest submissions
 		const { data, error } = await supabase
 			.from('submissions')
-			.select('*')
+			.select('*,reviews(*)')
 			.eq('user_id', session.user.id)
 			.order('attempt', { ascending: false })
-			.limit(1);
+			.maybeSingle();
 		if (error) throw error;
 
 		let fileUrl: string | undefined;
-		if (data.length > 0) {
-			const { data: objData } = await supabase.storage
+		if (data) {
+			const { data: objData, error } = await supabase.storage
 				.from(SUPABASE_BUCKET_ID)
-				.createSignedUrl(data[0].file_url, 60);
+				.createSignedUrl(data.file_url, 60);
 			fileUrl = objData?.signedUrl;
+			if (error) console.error(error);
 		}
 
 		return {
-			submission: data.length > 0 ? (data[0] as Submission) : null,
+			submission: data as (Submission & { reviews: Review[] }) | null,
 			fileUrl,
 			user: session?.user!
 		};
