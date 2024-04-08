@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { SubmissionStatus } from '$lib/supabase';
+	import type { SubmitFunction } from '@sveltejs/kit';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -7,9 +9,12 @@
 	let dialogEl: HTMLDialogElement;
 	let submissionId: string | undefined;
 	let checkAllEl: HTMLInputElement;
+	let message = '';
 
 	let checklist: string[] = [];
 	let notes: string = '';
+	let status = '';
+	let stars: number | undefined;
 
 	const handleOpenDialog = (id: string) => {
 		submissionId = id;
@@ -28,8 +33,21 @@
 		}
 	};
 
+	const enhancer: SubmitFunction = ({}) => {
+		return async ({ result, update }) => {
+			if (result.type === 'success') {
+				dialogEl.close();
+			} else if (result.type === 'failure') {
+				message = (result.data?.message ?? '') as string;
+			}
+			await update();
+		};
+	};
+
 	$: if (checklist.length > 0 && checklist.length < 9) {
 		checkAllEl.indeterminate = true;
+	} else if (checkAllEl) {
+		checkAllEl.indeterminate = false;
 	}
 </script>
 
@@ -64,7 +82,9 @@
 
 <dialog id="dialog" bind:this={dialogEl}>
 	<header>Review Submission</header>
-	<form>
+	<form use:enhance={enhancer} method="post" enctype="multipart/form-data">
+		<input type="hidden" name="submission_id" value={submissionId} />
+
 		<fieldset>
 			<legend>Criteria Checklist</legend>
 			<div>
@@ -116,14 +136,33 @@
 		<input type="file" name="file" id="review-file" />
 
 		<label for="status">Mark as <small class="red">*</small></label>
-		<select name="status" id="status" required>
+		<select name="status" id="status" required bind:value={status}>
 			<option hidden value="">Please select</option>
 			<option value={SubmissionStatus.Rejected}>Rejected</option>
 			<option value={SubmissionStatus.Completed}>Approved</option>
 		</select>
 
+		{#if status === SubmissionStatus.Completed}
+			<fieldset>
+				<legend>Stars</legend>
+				<label>
+					<input bind:group={stars} type="radio" name="stars" value={1} required /> 1
+				</label>
+				<label>
+					<input bind:group={stars} type="radio" name="stars" value={2} required /> 2
+				</label>
+				<label>
+					<input bind:group={stars} type="radio" name="stars" value={3} required /> 3
+				</label>
+			</fieldset>
+		{/if}
+
+		{#if message}
+			<br />
+			<p class="red">{message}</p>
+		{/if}
 		<br />
 		<button type="submit" formmethod="post">Review</button>
-		<button type="submit" formmethod="dialog">Cancel</button>
+		<button type="submit" formmethod="dialog" formnovalidate>Cancel</button>
 	</form>
 </dialog>
