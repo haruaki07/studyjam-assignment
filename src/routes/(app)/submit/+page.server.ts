@@ -49,10 +49,10 @@ export const actions: Actions = {
 			if (err) throw err;
 
 			const { error: err2 } = await supabase.from('submissions').insert({
-				user_id: user?.id,
+				user_id: user.id,
 				notes,
 				file_url: data.path,
-				attempt: (submission?.[0].attempt ?? 0) + 1
+				attempt: (submission?.[0]?.attempt ?? 0) + 1
 			});
 
 			if (err2) throw err2;
