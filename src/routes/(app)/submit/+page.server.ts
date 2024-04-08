@@ -5,8 +5,8 @@ import { SUPABASE_BUCKET_ID } from '$env/static/private';
 import { SubmissionStatus } from '$lib/supabase';
 
 export const actions: Actions = {
-	default: async ({ request, cookies, locals: { supabase, getSession } }) => {
-		const session = await getSession();
+	default: async ({ request, cookies, locals: { supabase, safeGetSession } }) => {
+		const { session } = await safeGetSession();
 		if (!session) return redirect(303, '/');
 
 		const formData = await request.formData();

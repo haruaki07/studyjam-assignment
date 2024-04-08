@@ -3,8 +3,8 @@ import type { PageServerLoad } from './$types';
 import type { Submission } from '$lib/supabase';
 import { SUPABASE_BUCKET_ID } from '$env/static/private';
 
-export const load: PageServerLoad = async ({ locals: { supabase, getSession } }) => {
-	const session = await getSession();
+export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession } }) => {
+	const { session } = await safeGetSession();
 	if (!session) redirect(303, '/');
 
 	try {
