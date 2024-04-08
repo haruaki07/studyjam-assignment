@@ -5,7 +5,7 @@ import type { Actions, PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ locals: { supabase } }) => {
 	const { data: submissions } = await supabase
 		.from('submissions')
-		.select(`id, attempt, status, profiles(id,nim,name), file_url, created_at`)
+		.select(`id, attempt, status, profiles(id,nim,name), file_url, notes, created_at`)
 		.eq('status', SubmissionStatus.Pending)
 		.order('created_at', { ascending: true });
 

@@ -9,6 +9,8 @@
 	let dialogEl: HTMLDialogElement;
 	let submissionId: string | undefined;
 	let checkAllEl: HTMLInputElement;
+	let submitterNotesDialogEl: HTMLDialogElement;
+	let submitterNotes = '';
 	let message = '';
 
 	let checklist: string[] = [];
@@ -44,6 +46,11 @@
 		};
 	};
 
+	const handleShowSubmitterNotes = (notes: string) => {
+		submitterNotes = notes;
+		submitterNotesDialogEl.showModal();
+	};
+
 	$: if (checklist.length > 0 && checklist.length < 9) {
 		checkAllEl.indeterminate = true;
 	} else if (checkAllEl) {
@@ -60,6 +67,7 @@
 			<th>Attempt</th>
 			<th>Submited At</th>
 			<th>File</th>
+			<th>Notes</th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -71,6 +79,11 @@
 				<td>{new Date(submission.created_at).toLocaleString()}</td>
 				<td>
 					<a href="/admin/dl?file_url={submission.file_url}" target="_blank" download>Download</a>
+				</td>
+				<td>
+					<button type="button" on:click={() => handleShowSubmitterNotes(submission.notes)}>
+						Show
+					</button>
 				</td>
 				<td>
 					<button type="button" on:click={() => handleOpenDialog(submission.id)}>Review</button>
@@ -164,5 +177,16 @@
 		<br />
 		<button type="submit" formmethod="post">Review</button>
 		<button type="submit" formmethod="dialog" formnovalidate>Cancel</button>
+	</form>
+</dialog>
+
+<dialog bind:this={submitterNotesDialogEl}>
+	<header>Submitter Notes</header>
+
+	<form method="dialog">
+		<p style="white-space: pre">
+			{submitterNotes}
+		</p>
+		<button type="submit">Close</button>
 	</form>
 </dialog>
