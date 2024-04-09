@@ -146,7 +146,7 @@
 		<textarea placeholder="Type..." name="notes" id="review-notes" bind:value={notes}></textarea>
 
 		<label for="review-file">Code Review File</label>
-		<input type="file" name="file" id="review-file" />
+		<input type="file" name="file" id="review-file" accept="application/zip" />
 
 		<label for="status">Mark as <small class="red">*</small></label>
 		<select name="status" id="status" required bind:value={status}>
@@ -157,7 +157,7 @@
 
 		{#if status === SubmissionStatus.Completed}
 			<fieldset>
-				<legend>Stars</legend>
+				<legend>Stars <small class="red">*</small></legend>
 				<label>
 					<input bind:group={stars} type="radio" name="stars" value={1} required /> 1
 				</label>
