@@ -1,6 +1,7 @@
 import { SubmissionStatus } from '$lib/supabase';
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
+import { SUPABASE_BUCKET_ID } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ locals: { supabase } }) => {
 	const { data: submissions } = await supabase
@@ -29,13 +30,22 @@ export const actions: Actions = {
 		};
 
 		try {
+			let code_review_url = null;
+			if (data.file.size > 0) {
+				code_review_url = `/reviews/${Date.now()}_review_${data.submission_id}.zip`;
+				const { error } = await supabase.storage
+					.from(SUPABASE_BUCKET_ID)
+					.upload(code_review_url, data.file);
+				if (error) throw error;
+			}
+
 			await supabase
 				.from('reviews')
 				.insert({
 					submission_id: data.submission_id,
 					criteria_checklist: data.checklist,
 					notes: data.notes,
-					code_review: data.file.size > 0 ? JSON.parse(await data.file?.text()) : undefined
+					code_review_url
 				})
 				.throwOnError();
 
