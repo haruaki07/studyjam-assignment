@@ -6,8 +6,8 @@ import { SUPABASE_BUCKET_ID } from '$env/static/private';
 export const load: PageServerLoad = async ({ locals: { supabase } }) => {
 	const { data: submissions } = await supabase
 		.from('submissions')
-		.select(`id, attempt, status, profiles(id,nim,name), file_url, notes, created_at`)
-		.eq('status', SubmissionStatus.Pending)
+		.select(`id, attempt, status, profiles(id,nim,name), file_url, notes, created_at, review_id`)
+		.is('review_id', null)
 		.order('created_at', { ascending: true });
 
 	type SubmissionsWithProfile = (Omit<NonNullable<typeof submissions>[0], 'profiles'> & {
@@ -39,14 +39,14 @@ export const actions: Actions = {
 				if (error) throw error;
 			}
 
-			await supabase
+			const { data: review } = await supabase
 				.from('reviews')
 				.insert({
-					submission_id: data.submission_id,
 					criteria_checklist: data.checklist,
 					notes: data.notes,
 					code_review_url
 				})
+				.select('id')
 				.throwOnError();
 
 			await supabase
@@ -54,7 +54,8 @@ export const actions: Actions = {
 				.update({
 					status: data.status,
 					updated_at: new Date(),
-					...(data.status === SubmissionStatus.Completed ? { stars: data.stars } : {})
+					...(data.status === SubmissionStatus.Completed ? { stars: data.stars } : {}),
+					review_id: review?.[0]?.id
 				})
 				.eq('id', data.submission_id)
 				.throwOnError();

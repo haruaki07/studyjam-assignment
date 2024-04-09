@@ -27,7 +27,7 @@ export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession 
 		}
 
 		return {
-			submission: data as (Submission & { reviews: Review[] }) | null,
+			submission: data as (Submission & { reviews: Review }) | null,
 			fileUrl,
 			user: session?.user!
 		};

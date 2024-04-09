@@ -44,8 +44,8 @@
 		</a>
 	</p>
 
-	{#if data.submission.status !== SubmissionStatus.Pending && data.submission.reviews?.[0]}
-		<ReviewResult review={data.submission.reviews[0]} />
+	{#if data.submission.status !== SubmissionStatus.Pending && data.submission.reviews}
+		<ReviewResult review={data.submission.reviews} />
 	{/if}
 {:else}
 	<p class="red">Anda belum pernah mengumpulkan berkas submission!</p>
