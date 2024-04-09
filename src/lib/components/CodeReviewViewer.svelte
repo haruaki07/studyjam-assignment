@@ -18,7 +18,7 @@
 
 {#await loadFile() then _}
 	{#each Object.keys(entryMap) as fileName}
-		<details open>
+		<details>
 			<summary>
 				{fileName}
 				<svg

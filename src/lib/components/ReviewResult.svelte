@@ -44,9 +44,8 @@
 	</div>
 {/each}
 
-<h3>Catatan dari Reviewer</h3>
 <details>
-	<summary><strong>Catatan peserta:</strong> (Klik untuk melihat)</summary>
+	<summary><strong>Catatan dari Reviewer:</strong> (Klik untuk melihat)</summary>
 	<div style="white-space: pre;">{review.notes || '-'}</div>
 </details>
 
