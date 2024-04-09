@@ -56,6 +56,7 @@
 	}
 
 	:global(.shiki code) {
+		background: transparent;
 		display: block;
 		padding: 10px 24px;
 		width: fit-content;
