@@ -1,7 +1,13 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import CodeReviewViewer from '$lib/components/CodeReviewViewer.svelte';
 	import type { Review } from '$lib/supabase';
 
 	export let review: Review;
+
+	let codeReviewFile: any;
+
+	$: ({ supabase } = $page.data);
 
 	const checklistMap: Record<string, string> = {
 		c1: 'Kriteria 1: Menggunakan Laravel',
@@ -22,6 +28,10 @@
 		}),
 		{}
 	);
+
+	const getCodeReviewFile = async (url: string) => {
+		codeReviewFile = await fetch(url).then((res) => res.blob());
+	};
 </script>
 
 <h2>Hasil Review</h2>
@@ -39,6 +49,17 @@
 	<summary><strong>Catatan peserta:</strong> (Klik untuk melihat)</summary>
 	<div style="white-space: pre;">{review.notes || '-'}</div>
 </details>
+
+{#if review.code_review_url}
+	<h3>Code Review</h3>
+	{#await getCodeReviewFile(review.code_review_url)}
+		getting File...
+	{:then}
+		<CodeReviewViewer file={codeReviewFile} />
+	{:catch err}
+		{err}
+	{/await}
+{/if}
 
 <style>
 	input[type='checkbox'][readonly] {

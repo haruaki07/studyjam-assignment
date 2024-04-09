@@ -14,6 +14,7 @@ export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession 
 			.select('*,reviews(*)')
 			.eq('user_id', session.user.id)
 			.order('attempt', { ascending: false })
+			.limit(1)
 			.maybeSingle();
 		if (error) throw error;
 
@@ -23,6 +24,14 @@ export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession 
 				.from(SUPABASE_BUCKET_ID)
 				.createSignedUrl(data.file_url, 60);
 			fileUrl = objData?.signedUrl;
+			if (error) console.error(error);
+		}
+
+		if (data?.reviews?.code_review_url) {
+			const { data: objData, error } = await supabase.storage
+				.from(SUPABASE_BUCKET_ID)
+				.createSignedUrl(data.reviews.code_review_url, 60);
+			data.reviews.code_review_url = objData?.signedUrl;
 			if (error) console.error(error);
 		}
 
