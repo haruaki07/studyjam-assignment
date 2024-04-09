@@ -4,6 +4,7 @@
 
 	let submitting = false;
 	let processing = false;
+	let success = false;
 	let fileError = '';
 	let error = '';
 
@@ -85,6 +86,8 @@
 				if (result.type === 'error') {
 					error = result.error.message;
 					return;
+				} else if (result.type !== 'failure') {
+					success = true;
 				}
 
 				await applyAction(result);
@@ -107,6 +110,6 @@
 	<label for="notes"><strong>Catatan untuk reviewer (bila ada)</strong></label>
 	<textarea name="notes" id="notes" placeholder="Ketik..." disabled={submitting}></textarea>
 
-	<button type="submit" disabled={processing || submitting}>Submit</button>
-	<button type="reset" disabled={processing || submitting}>Batal</button>
+	<button type="submit" disabled={processing || submitting || success}>Submit</button>
+	<button type="reset" disabled={processing || submitting || success}>Batal</button>
 </form>
