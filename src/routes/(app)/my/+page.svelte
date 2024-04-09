@@ -3,6 +3,9 @@
 	import ReviewResult from '$lib/components/ReviewResult.svelte';
 	import { SubmissionStatus } from '$lib/supabase';
 	import type { PageData } from './$types';
+	import stars1Img from '$lib/assets/stars1.png';
+	import stars2Img from '$lib/assets/stars2.png';
+	import stars3Img from '$lib/assets/stars3.png';
 
 	export let data: PageData;
 
@@ -16,6 +19,27 @@
 <Flash />
 
 {#if data.submission}
+	{#if data.submission.status === SubmissionStatus.Completed}
+		<br />
+		{#if data.submission.stars === 1}
+			<img src={stars1Img} alt="One Star Badge" class="star-badge" />
+		{:else if data.submission.stars === 2}
+			<img src={stars2Img} alt="Two Stars Badge" class="star-badge" />
+		{:else if data.submission.stars === 3}
+			<img src={stars3Img} alt="Three Stars Badge" class="star-badge" />
+		{/if}
+
+		<p>
+			Halo <strong>{data.user.user_metadata.name}</strong>, Selamat! Anda telah berhasil
+			menyelesaikan
+			<strong>Proyek Akhir StudyJam Web Programming Advanced: MusicShelf API</strong>.
+		</p>
+		<p>
+			Mohon tunggu informasi selanjutnya mengenai sertifikat dan hal-hal lainnya. Terima kasih atas
+			kehadiran dan kontribusi Anda dalam kelas StudyJam ini.
+		</p>
+	{/if}
+
 	<h2>Info Submission</h2>
 
 	<p><strong>Nama peserta:</strong> {data.user.user_metadata.name}</p>
@@ -50,3 +74,11 @@
 {:else}
 	<p class="red">Anda belum pernah mengumpulkan berkas submission!</p>
 {/if}
+
+<style>
+	.star-badge {
+		width: 80px;
+		object-fit: cover;
+		object-position: bottom;
+	}
+</style>
